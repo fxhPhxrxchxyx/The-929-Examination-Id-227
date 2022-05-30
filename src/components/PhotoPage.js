@@ -12,31 +12,63 @@ import {
   FormFeedback,
   FormText,
   Button,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Modal,
 } from "reactstrap";
 import { Photos } from "./Photos";
 const PhotoPage = () => {
+  const [photoList, setPhotoList] = useState(Photos);
   const [show, setShow] = useState(-1);
   function handleClick(photo) {
     console.log(photo);
     setShow(photo);
+    setIsopen(photo.id);
   }
-
+  const [isopen, setIsopen] = useState(-1);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [comment, setComment] = useState("");
+  const [score, setScore] = useState("");
+  function toggleModal() {
+    if (isopen != -1) {
+      setIsopen(-1);
+    }
+  }
+
   return (
     <div className="d-flex flex-column">
       <div className="d-flex justify-content-center ">
         <CardGroup className="col-12 col-md-8 m-1 ">
-          {Photos.map((p) => {
+          {photoList.map((p) => {
             return (
-              <Card
-                key={p.id}
-                onClick={() => handleClick(p)}
-                style={{ cursor: "pointer" }}
-              >
-                <CardImg alt={p.name} src={p.image} width="100%" />
-              </Card>
+              <React.Fragment key={p.id}>
+                <Modal isOpen={isopen == p.id} toggle={toggleModal}>
+                  <ModalHeader toggle={toggleModal}>Description</ModalHeader>
+                  <ModalBody>
+                    <div>{show.description}</div>
+                    <br />
+                    <div>
+                      <h4>Number of like✨</h4>
+                    </div>
+                    <div>{show.like}</div>
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button color="primary" onClick={toggleModal}>
+                      Ok
+                    </Button>
+                    <Button onClick={toggleModal}>Cancel</Button>
+                  </ModalFooter>
+                </Modal>
+                <Card
+                  key={p.id}
+                  onClick={() => handleClick(p)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <CardImg alt={p.name} src={p.image} width="100%" />
+                </Card>
+              </React.Fragment>
             );
           })}
         </CardGroup>
@@ -100,13 +132,52 @@ const PhotoPage = () => {
                   </FormFeedback>
                 </Col>
               </FormGroup>
+              <FormGroup className="col-1">
+                <Label for="score">score</Label>
+                <Input
+                  id="score"
+                  name="score"
+                  type="select"
+                  invalid={score == ""}
+                  valid={score != ""}
+                  value={score}
+                  onChange={(e) => setScore(e.target.value)}
+                >
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </Input>
+              </FormGroup>
             </Form>
             <div>
-              <Button type="submit" value="submit" color="info" outline>
+              <Button
+                type="submit"
+                value="submit"
+                color="info"
+                outline
+                onClick={() => {
+                  alert(JSON.stringify({ username, email, comment, score }));
+                }}
+              >
                 Submit
               </Button>
-              <Button color="success" outline>
+              <Button
+                color="success"
+                outline
+                onClick={() => {
+                  let copyPhotoList = [...photoList];
+                  let updateIndex = copyPhotoList.findIndex(
+                    (ph) => ph.id == show.id
+                  );
+                  console.log(copyPhotoList);
+                  copyPhotoList[updateIndex].like += 1;
+                  setPhotoList(copyPhotoList);
+                }}
+              >
                 <span className="fa fa-thumbs-up fa-lg"></span>
+                {show.like}
               </Button>
             </div>
           </Card>
