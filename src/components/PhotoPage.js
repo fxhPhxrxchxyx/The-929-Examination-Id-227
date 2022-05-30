@@ -17,7 +17,7 @@ import {
   ModalFooter,
   Modal,
 } from "reactstrap";
-// import { Photos } from "./Photos";
+import { Photos } from "./Photos";
 import { increment } from "../redux/photo";
 import { connect } from "react-redux";
 function mapState(state) {
@@ -26,7 +26,7 @@ function mapState(state) {
 
 const PhotoPage = (props) => {
   console.log(props);
-  const [photoList, setPhotoList] = useState(props.photo.value);
+  const [photoList, setPhotoList] = useState([...Photos]);
   const [show, setShow] = useState(-1);
   function handleClick(photo) {
     console.log(photo);
@@ -180,8 +180,14 @@ const PhotoPage = (props) => {
                     (ph) => ph.id == show.id
                   );
                   console.log(copyPhotoList);
-                  copyPhotoList[updateIndex].like += 1;
-                  setPhotoList(copyPhotoList);
+                  let count = copyPhotoList.map((item, i) => {
+                    if (i === updateIndex)
+                      return { ...item, like: item.like + 1 };
+                    else return { ...item };
+                  });
+                  setShow(count[updateIndex]);
+                  console.log(count[updateIndex]);
+                  setPhotoList([...count]);
                 }}
               >
                 <span className="fa fa-thumbs-up fa-lg"></span>
