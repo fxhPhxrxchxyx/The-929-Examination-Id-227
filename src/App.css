@@ -1,0 +1,23 @@
+.navbar-light {
+  background-color: #bad1ff;
+}
+a {
+  text-decoration: none;
+}
+.navbar-toggler {
+  margin-right: 10px;
+}
+
+.Card-border {
+  border-radius: 15px;
+}
+
+.footer {
+  background-color: #c1e4ec;
+  margin: 0px auto;
+  padding: 5px 0px 5px 0px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
