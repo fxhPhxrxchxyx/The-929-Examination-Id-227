@@ -25,6 +25,6 @@ export const Photos = [
     id: 3,
     name: "Fah",
     image: "pic/Me.JPG",
-    description: " Fah Phurichaya Khemvaraporn",
+    description: " Fah Phurichaya Khemvaraporn birthday 2 Apirl 2002 ",
   },
 ];

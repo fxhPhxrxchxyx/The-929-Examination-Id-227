@@ -8,7 +8,7 @@ class Header extends Component {
         <Navbar light className=" navbar navbar-expand-lg">
           <div className="container-fluid">
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-toggle="collapse"
               data-target="#navbarNav"
@@ -16,9 +16,9 @@ class Header extends Component {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div className="collapse navbar-collapse" id="navbarNav">
               <NavbarBrand href="/home">
                 <img
                   src="pic/logo.png"
@@ -28,20 +28,22 @@ class Header extends Component {
                 />
                 <span>fxh</span>
               </NavbarBrand>
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="/home">
+              <ul className="navbar-nav">
+                <li className="nav-item active">
+                  <a className="nav-link" href="/home">
                     <span className="fa fa-home fa-lg"></span>
                     Home
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/about">
+                <li className="nav-item">
+                  <a className="nav-link" href="/about">
+                    <span className="fa fa-info"> </span>
                     About
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/photo">
+                <li className="nav-item">
+                  <a className="nav-link" href="/photo">
+                    <span className="fa fa-camera"> </span>
                     Photo
                   </a>
                 </li>
