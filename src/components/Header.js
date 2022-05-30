@@ -19,7 +19,7 @@ class Header extends Component {
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-              <NavbarBrand href="/">
+              <NavbarBrand href="/home">
                 <img
                   src="pic/logo.png"
                   height="30"

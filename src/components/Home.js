@@ -9,6 +9,7 @@ import {
   CardText,
   CardTitle,
 } from "reactstrap";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 const Home = () => {
   return (
