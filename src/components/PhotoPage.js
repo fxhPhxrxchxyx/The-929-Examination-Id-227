@@ -17,9 +17,16 @@ import {
   ModalFooter,
   Modal,
 } from "reactstrap";
-import { Photos } from "./Photos";
-const PhotoPage = () => {
-  const [photoList, setPhotoList] = useState(Photos);
+// import { Photos } from "./Photos";
+import { increment } from "../redux/photo";
+import { connect } from "react-redux";
+function mapState(state) {
+  return state;
+}
+
+const PhotoPage = (props) => {
+  console.log(props);
+  const [photoList, setPhotoList] = useState(props.photo.value);
   const [show, setShow] = useState(-1);
   function handleClick(photo) {
     console.log(photo);
@@ -167,6 +174,7 @@ const PhotoPage = () => {
                 color="success"
                 outline
                 onClick={() => {
+                  props.increment();
                   let copyPhotoList = [...photoList];
                   let updateIndex = copyPhotoList.findIndex(
                     (ph) => ph.id == show.id
@@ -187,4 +195,4 @@ const PhotoPage = () => {
   );
 };
 
-export default PhotoPage;
+export default connect(mapState, { increment })(PhotoPage);
